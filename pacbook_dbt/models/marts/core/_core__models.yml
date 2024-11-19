@@ -1,0 +1,95 @@
+version: 2
+
+models:
+  - name: dim_customers 
+    description: "The dimension table contains detailed customer information derived from the related table in staging schema"
+    columns:
+      - name: sk_customer_id
+        description: "Surrogate Key for dim_customer, generated based on the nk_customer_id, full_name and full_address columns"
+        tests:
+          - unique
+          - not_null
+          - dbt_constraints.primary_key
+
+      - name: nk_customer_id
+        description: "Natural Key for dim_customer, generated from customer table (customer_id) in staging schema"
+        tests: 
+          - not_null
+
+  - name: dim_books 
+    description: "The dimension table contains detailed book information derived from the related table in staging schema"
+    columns:
+      - name: sk_book_id
+        description: "Surrogate Key for dim_customer, generated based on the nk_book_id columns"
+        tests:
+          - unique
+          - not_null
+          - dbt_constraints.primary_key
+
+      - name: nk_book_id
+        description: "Natural Key for dim_book, generated from book table (book_id) in staging schema"
+        tests: 
+          - not_null
+
+# ---------------------------------------------------------------------------------------------------------------------- #
+
+  - name: fct_orders
+    description: "Fact table to captured an information about customer order details"
+    columns:
+      - name: sk_order_id
+        description: "Surrogate Key for fct_orders, generated based on the nk_order_id columns"
+        tests:
+          - unique
+          - not_null
+          - dbt_constraints.primary_key
+
+      - name: dd_order_id
+        description: "Degenerate dimension key from cust_order table (order_id) in staging schema"
+        tests:
+          - not_null  
+      
+      - name: nk_customer_id
+        description: "Foreign key from dim_customers"
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('dim_customers')
+              pk_column_name: nk_customer_id
+
+# ---------------------------------------------------------------------------------------------------------------------- #
+
+  - name: fct_book_sales
+    description: "Fact table to captured an information about daily/monthly/yearly book sales details"
+    columns:
+      - name: order_date
+        description: "Foreign key from dim_date, generated from cust_order table (order_date) to get actual order date"
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('dim_date')
+              pk_column_name: date_actual
+
+      - name: dd_order_id
+        description: "Degenerate dimension key from cust_order table (order_id) in staging schema"
+        tests:
+          - not_null 
+
+      - name: nk_book_id
+        description: "Foreign key from dim_books"
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('dim_books')
+              pk_column_name: nk_book_id
+
+# ---------------------------------------------------------------------------------------------------------------------- 
+
+seeds:
+  - name: dim_date
+    description: "The dimension table contains detailed date/time information from seed model (dim_date.csv)"
+    columns:
+      - name: date_id
+        description: "Primary Key for dim_date, based on date_id column"
+        tests:
+          - not_null
+          - dbt_constraints.primary_key

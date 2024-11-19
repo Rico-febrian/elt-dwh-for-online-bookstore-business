@@ -1,0 +1,4 @@
+pacbook_venv/
+.env
+**/__pycache__/
+temp/

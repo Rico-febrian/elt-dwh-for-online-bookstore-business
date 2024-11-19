@@ -1,0 +1,46 @@
+[0m11:01:26.733971 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f51c2a5e890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f51c2132cb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f51c2133130>]}
+
+
+============================== 11:01:26.741745 | 7c4cc66c-6a06-484a-9f4a-abf67dd3a551 ==============================
+[0m11:01:26.741745 [info ] [MainThread]: Running with dbt=1.9.0-b4
+[0m11:01:26.743260 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/ricofebrian/.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt init', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m11:01:44.159270 [debug] [MainThread]: Starter project path: /home/ricofebrian/data-warehouse-labs/project/pacbook_store/pacbook_venv/lib/python3.10/site-packages/dbt/include/starter_project
+[0m11:01:44.171642 [info ] [MainThread]: 
+Your new dbt project "pacbook_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m11:01:44.172439 [info ] [MainThread]: Setting up your profile.
+[0m11:02:40.560046 [info ] [MainThread]: Profile pacbook_dbt written to /home/ricofebrian/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m11:02:40.569987 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 74.03066, "process_user_time": 3.647076, "process_kernel_time": 0.521434, "process_mem_max_rss": "90700", "process_in_blocks": "31864", "process_out_blocks": "80"}
+[0m11:02:40.571576 [debug] [MainThread]: Command `dbt init` succeeded at 11:02:40.571196 after 74.03 seconds
+[0m11:02:40.572454 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f51c2a5e890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f51c181e680>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f51c190fe20>]}
+[0m11:02:40.573387 [debug] [MainThread]: Flushing usage events
+[0m11:02:41.822932 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:40:56.265990 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9cecc26920>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9ced8c0cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9ced8c0d30>]}
+
+
+============================== 23:40:56.275866 | e07d6515-e377-4e91-aa34-7407aac67b67 ==============================
+[0m23:40:56.275866 [info ] [MainThread]: Running with dbt=1.9.0-b4
+[0m23:40:56.277322 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/ricofebrian/.dbt', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'invocation_command': 'dbt snapshot', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m23:40:56.279274 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/ricofebrian/data-warehouse-labs/project/pacbook_store/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m23:40:56.283051 [debug] [MainThread]: Resource report: {"command_name": "snapshot", "command_wall_clock_time": 0.182858, "process_user_time": 4.193736, "process_kernel_time": 0.758769, "process_mem_max_rss": "85696", "process_in_blocks": "51320", "process_out_blocks": "16", "command_success": false}
+[0m23:40:56.284559 [debug] [MainThread]: Command `dbt snapshot` failed at 23:40:56.284266 after 0.18 seconds
+[0m23:40:56.285711 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9cecc26920>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9ced8c0c40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9ced8c0a90>]}
+[0m23:40:56.286865 [debug] [MainThread]: Flushing usage events
+[0m23:40:57.668610 [debug] [MainThread]: An error was encountered while trying to flush usage events

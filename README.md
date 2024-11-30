@@ -1,4 +1,4 @@
-# How I Built a Data Warehouse & ELT Pipeline with DTB and Luigi
+# How I Built a Data Warehouse & ELT Pipeline with DBT and Luigi
 
 ![ELT Design](https://github.com/Rico-febrian/elt-dwh-for-online-bookstore-business/blob/main/assets/elt_pipeline_design_for_pacbook.png)
 

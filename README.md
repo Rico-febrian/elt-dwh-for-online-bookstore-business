@@ -1,6 +1,6 @@
 # How I Built a Data Warehouse & ELT Pipeline with DBT and Luigi
 
-![ELT Design](https://github.com/Rico-febrian/elt-dwh-for-online-bookstore-business/blob/main/assets/elt_pipeline_design_for_pacbook.png)
+![Title](https://github.com/Rico-febrian/elt-dwh-for-online-bookstore-business/blob/main/assets/title.png)
 
 Hi there! Welcome to my learning logs.
 
@@ -22,6 +22,59 @@ For the full story about the case study and how I designed the data warehouse, y
 - Orchestrating the pipeline with Luigi
 
 - Automating the pipeline with Cron
+
+---
+---
+
+# Pipeline Workflow
+
+Before diving into the main discussion, take a look at the image below. This illustrates the workflow I followed to build this project.
+
+![ELT Design](https://github.com/Rico-febrian/elt-dwh-for-online-bookstore-business/blob/main/assets/elt_pipeline_design_for_pacbook.png)
+
+- ## How the pipeline works
+
+  - ### Extract Task
+    The Extract task pulls raw data from the source database and saves it as CSV files. The output of this task is a set of CSV files containing raw data for each table from the source database.
+  
+  - ### Load Task 
+    The Load task takes the extracted data (CSV files) and loads it into staging schemas in the warehouse database
+
+  - ### Transform Task
+
+    The Transform Task performs data transformations based on the design of the data warehouse. The transformations are done using DBT (Data Build Tool), which helps organize and automate the data processing steps.
+
+    In this step, the raw data from the staging schema is processed and transformed to match the structure and requirements of the data warehouse. Once transformed, the data is loaded into the final schema, which is used by business users for analysis and reporting.
+      
+- ## Why use this workflow?
+
+  This workflow was designed based on the business requirements provided by stakeholders in the case study. If you're curious about their specific needs, you can refer to [my article](https://medium.com/@ricofebrian731/learning-data-engineering-designing-a-data-warehouse-and-implementing-elt-with-dbt-and-luigi-for-a-4a71121d4aeb) for more details.
+
+  Here’s why this workflow fits the scenario:
+
+  - **Aligned with business needs**
+
+    Stakeholders requested a low-cost, scalable, and easy-to-understand solution. This pipeline delivers on those points while allowing room for experimentation before making larger investments.
+
+  - **Efficiency for small data volumes**
+
+    With only ~90,000 rows and slow growth of around 5% per month, the pipeline handles data extraction and loading quickly without needing additional layers or complex systems.
+
+  - **Simplicity and maintainability**
+
+    The design ensures that users can easily understand, use, and maintain the pipeline with minimal technical barriers. This is critical for a team starting small or exploring new possibilities.
+
+- ## Trade-off
+
+  While this workflow is simple and efficient, it does have some limitations:
+
+  - **No raw data backup in warehouse database**
+
+    If a transformation fails or a bug occurs, the data in the staging schema could be affected. This means you might need to re-extract the data from the source. This isn’t a major problem for small datasets, but as the data grows, it might become more time-consuming and inconvenient.
+
+  - **Limited scalability for large datasets**
+
+    If the bookstore experiences rapid growth, this pipeline might need adjustments to handle the increased data volume. At that point, having a dedicated public layer as a raw data archive would become crucial to ensure scalability and reliability.
 
 ---
 ---
@@ -144,7 +197,7 @@ Before starting, take a look at the requirements and preparations below:
 
       - Source database
           
-          - [Populated data source](https://github.com/Rico-febrian/elt-dwh-for-online-bookstore-business/blob/main/helper/src_data/init.sql)
+        - [Populated data source](https://github.com/Rico-febrian/elt-dwh-for-online-bookstore-business/blob/main/helper/src_data/init.sql)
 
       - Warehouse database
 
